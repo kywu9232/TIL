@@ -1,5 +1,31 @@
 # Markdown
 
+> 텍스트 기반의 마크업 언어
+
+> > TAG를 사용한다
+
+
+
+## 문법
+
++ #H1
++ ##H2
++ .......
+
+
+
+* 리스트1
+  + 리스트2
+    + 리스트3
+      + 리스트4
+* '>' 주석
+* |10|20|30|
+  |40|50|60|
+
+---
+
+
+
 ## **GIT**이란?
 
 * **분산** 버전 관리 시스템
@@ -8,43 +34,36 @@
   + 개발되어온 과정 파악 가능
   + 이전 버전과의 **변경 사항 비교 및 분석**
   + 수정사항을 기록
-
+  + 백업, 협업, 복구에 유용
 * Git 기본기
 
   * Repository
+
     * 특정 디렉토리를 버전관리하는 저장소
     * `git init` 명령어로 로컬 저장소 생성
-
   * Working Directory = 내가 작업하고있는 실제 디렉토리
-
+  
     + untracked 파일
-
     + `git add` 파일명  , `git .` (현재 진행중인 모든 파일을 올림)
-
   * Staging Area = commit으로 남기고 싶은 특정 버전으로 관리하고 싶은 파일이 있는곳
 
     + staged 파일
-
     + `git commit` -m "" ==> Repository로
-
   * Repository = commit 들이 저장되는 곳
 
     + `git init` = 로컬 저장소 생성
-
     + `git status` = 관리되고 있는 파일들의 상태를 알 수 있음
-
   * Git 명령어
 
-    + `git diff `
-    + `git log` `git log --oneline` 로그 조회
-
-    + git `remote add` origin {remote_repo}
-
+    + `git diff` (commit id) (commit id) 변경사항 조회가능
+    + `git log`, `git log --oneline` 로그 조회
+    + git `remote add` origin (Repository Url)
     + `git remote -v` 연결 확인
+    + `git push -u`  origin master 로컬과 원격저장소 동기화
 
-    + `git push -u`  origin master 업로드
+---
 
-      
+
 
 ## GUI / CLI
 
@@ -52,6 +71,10 @@
     + 폴더의 아이콘 등 유저가 사용하기 쉬운 인터페이스
 * CLI Command Line Interface
     + cmd , git 등 명령줄 인터페이스 
+
+---
+
+
 
 
 ## Linux 명령어
@@ -67,4 +90,4 @@
 + `pwd` 현재 위치한 디렉토리를 알려줌
 
 
-       
+​       
