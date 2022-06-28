@@ -1,4 +1,4 @@
-# GIT
+# Markdown
 
 ## **GIT**이란?
 
