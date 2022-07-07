@@ -19,13 +19,14 @@ class Employee{
 public class ArrayListTest {
 	
 	public static void main(String[] args) {
-		ArrayList list = new ArrayList(5);
-		list.add("java");
+		//ArrayList<Employee> list = new ArrayList<Employee>(5);
+		ArrayList<Employee> list = new ArrayList(5); //가능
+		/*list.add("java");
 		list.add(100);
 		list.add(3.14);
 		list.add("jsp");
 		list.add(true);
-		list.add('a');
+		list.add('a');*/
 		Employee e1 = new Employee(100, "김사원", 67000.88);
 		list.add(e1);
 		Employee e2 = new Employee(200, "최사원", 77000.88);
@@ -35,7 +36,10 @@ public class ArrayListTest {
 		
 		System.out.println(list.size());
 		for(int i = 0; i<list.size();i++) {// 저장된 갯수 만큼 반복
-			System.out.println(i + "위치의 값 = " + list.get(i));
+			/*if(list.get(i) instanceof Employee) {
+				((Employee)list.get(i)).name;
+			}*/
+			System.out.println(i + "위치의 값 = " + list.get(i).name);
 		}
 	}
 
