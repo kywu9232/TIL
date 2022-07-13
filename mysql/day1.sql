@@ -1,0 +1,129 @@
+SHOW DATABASES; /*DB 종류 호출*/
+
+USE MYSQL; /*MYSQL 사용*/
+
+SELECT HOST, USER FROM USER;
+
+CREATE TABLE EMPLOYEES
+(EMPLOYEE_ID int(10), EMPLOYEE_NAME varchar(20), /*사번 정수10자리, 이름 문자열 20바이트*/
+SALARY decimal(10,2), HIRE_DATE date,/*급여 실수(소수 2자리), 날짜 (년도 월 일 요일)*/
+ DEPARTMENT_ID int(5) ); /*부서 번호*/
+
+SELECT * FROM EMPLOYEES;
+
+INSERT INTO EMPLOYEES VALUES(100,'이사원', 45000.99,NOW(),10);
+INSERT INTO EMPLOYEES VALUES(102,'김사원', 45000.99,NOW(),10);
+INSERT INTO EMPLOYEES VALUES(103,'박사원', 45000.99,'2020-12-12',10);
+INSERT INTO EMPLOYEES VALUES(104,'최사원', 65000.99,'2020-12-12',10);
+INSERT INTO EMPLOYEES VALUES(105,'강사원', 75000.99,'2008-07-12',10);
+INSERT INTO EMPLOYEES VALUES(106,'고사원', 85000.99,'2020-02-12',10);
+INSERT INTO EMPLOYEES VALUES(107,'구사원', 66000.99,'2017-01-12',10);
+INSERT INTO EMPLOYEES VALUES(108,'홍사원', 76500.99,'2019-12-12',10);
+INSERT INTO EMPLOYEES VALUES(109,'서사원', 45400.99,'2004-02-12',10);
+
+SELECT * FROM EMPLOYEES;
+
+USE MYSQL;
+SELECT * FROM EMPLOYEES;
+SELECT EMPLOYEES_ID,EMPLOYEE_NAME FROM EMPLOYEES;
+SELECT DISTINCT DEPARTMENT_ID FROM EMPLOYEES; -- EMPLOYEE 테이블의 사원들의 속한 부서코드
+/*SELECT '사번은' ||EMPLOYEE_ID|| '이고 이름은 ' || EMPLOYEE_NAME||'입니다'
+FROM EMPLOYEES; -- 사번은 XX이고 이름은 XXXX입니다*/
+-- 이름, 연봉 조회, 단 연봉은 급여의 12배로 출력
+SELECT EMPLOYEE_NAME, SALARY * 12 FROM EMPLOYEES;
+
+
+-- 이름, 급여 조회하되 급여 50000이상인 사원만 조회
+SELECT EMPLOYEE_NAME,SALARY FROM EMPLOYEES
+WHERE SALARY >= 50000;
+
+-- 이름이 이사원이고 급여가 40000 사원 조회
+SELECT EMPLOYEE_NAME,SALARY FROM EMPLOYEES
+WHERE EMPLOYEE_NAME = '이사원' AND SALARY =40000;
+
+-- 입사일이 2008-12-12 이거나 급여가 100000이상인 사원의 입사일 급여 이름조회
+SELECT HIRE_DATE,SALARY,EMPLOYEE_NAME FROM EMPLOYEES
+WHERE HIRE_DATE = '2008-12-12' OR SALARY >=100000;
+
+-- 이름이 최씨인 사원의 이름과 보너스 조회. 보너스는 급여의 5%
+-- LIKE - 문자열 패턴 유사, %: 값의 자릿수 모든문자 무관,  _ :1자리 모든문자 무관
+SELECT EMPLOYEE_NAME, SALARY*0.05 FROM EMPOLOYEES
+WHERE EMPLOYEE_NAME LIKE '최__';
+
+-- 입사일이  2020년도 입사한 사원의 이름과 입사일 조회
+SELECT EMPLOYEE_NAME,HIRE_DATE FROM EMPLOYEES
+WHERE HIRE_DATE LIKE '2020%';
+
+-- 급여 5만 이상 7만 이하 사원 이름과 급여 조회
+SELECT EMPLOYEE_NAME,SALARY
+FROM EMPLOYEES
+WHERE SALARY between 50000 AND 70000;
+-- WHERE SALARY >= 50000 AND SALARY <= 70000;
+
+-- 목록 연산자 IN(,,,,)
+-- 사번이 100, 101, 103, 204 사원의 사번과 이름 조회
+SELECT * FROM EMPLOYEES
+WHERE EMPLOYEE_ID IN (100,101,103,204);
+
+-- EMPLOYEES 테이블 데이터 5개
+INSERT INTO EMPLOYEES VALUES(400,'최신입', 40000.0,NULL,NULL);
+INSERT INTO EMPLOYEES VALUES(401,'김신입', 40000.0,NOW(),20);
+INSERT INTO EMPLOYEES VALUES(402,'오신입', 40000.0,NOW(),30);
+INSERT INTO EMPLOYEES VALUES(403,'강신입', 40000.0,NOW(),40);
+INSERT INTO EMPLOYEES VALUES(404,'최신입', 40000.0,NULL,NULL);
+
+-- 입사일 없는 사원
+SELECT * FROM EMPLOYEES
+WHERE HIRE_DATE IS NULL;
+
+-- 부서 배정 없는 사원
+SELECT * FROM EMPLOYEES
+WHERE DEPARTMENT_ID IS NULL;
+
+-- 조회시 별명 ALIAS(조회시 임시 사용 다른 컬럼명
+SELECT EMPLOYEE_NAME 사원명 ,SALARY 월급 ,SALARY*12 '사원의 연봉' FROM EMPLOYEES;
+INSERT INTO EMPLOYEES VALUES(405,'최경력', ifnull(SALARY,1000),NOW(),NULL);
+
+-- 조회시 두개 이상의 컬럼 연결 .concat
+-- xxx사원은 xxx의 월급을 받는다
+SELECT concat (EMPLOYEE_NAME, '사원은 ', SALARY, '의 월급을 받습니다') '급여 정보 'FROM EMPLOYEES;
+
+-- order by
+-- 사번 낮은 - 높은 (기본)
+select * from EMPLOYEES
+order by EMPLOYEE_ID asc;
+
+-- 사번 높은 - 낮은
+select * from EMPLOYEES
+order by EMPLOYEE_ID desc;
+
+-- 급여 높은
+-- 사번 낮은 - 높은, 동일 급여 사 원은 사번 큰 사원부터
+select * from EMPLOYEES
+order by SALARY desc, EMPLOYEE_ID desc;
+
+-- 사번 낮은 - 높은
+select EMPLOYEE_ID 사번 ,SALARY from EMPLOYEES
+order by 2 desc, 사번 desc;
+
+-- 급여 포함
+select EMPLOYEE_ID, SALARY from EMPLOYEES
+order by SALARY desc;
+
+-- 급여 많은 사원부터 상위 3명만
+select EMPLOYEE_NAME, SALARY FROM EMPLOYEES
+order by salary desc
+limit 3;
+
+-- 급여 많은 사원부터 정렬하되  4,5,6번째만
+select EMPLOYEE_NAME, SALARY FROM EMPLOYEES
+order by salary desc
+limit 3, 3; -- 3번 인덱스부터 3개
+
+
+select database();
+show tables;
+
+create table emp_copy(select EMPLOYEE_NAME, SALARY, HIRE_DATE FROM EMPLOYEES);
+show tables;
+select * from emp_copy;
