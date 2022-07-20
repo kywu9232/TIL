@@ -12,25 +12,22 @@ public class MemberSelectView implements View{
 		System.out.println("아이디 입력 : ");
 		String id = sc.next();
 		System.out.println("암호 입력 : ");
-		int password = sc.nextInt();
-			
-		MemberDTO dto = new MemberDTO();
-		dto.setId(id);
-		dto.setPassword(password);
+		String password = sc.next();
 		
 		MemberDAO dao = new MemberDAO();		
-		int result = dao.insertMember(dto);
-		if(result == 0) {
-			System.out.println("회원가입부터 하세요");
-		}
-		else if(result ==1) {
-			System.out.println("암호가 다릅니다");
-		}
-		else if(result ==2) {
-			System.out.println("환영합니다");
-		}
-		System.out.println(result);
+		MemberDTO dto = dao.selectMember(id,password);
+		if(dto.getId() !=null) {
+			if(dto.getPassword() != 0) {
+				System.out.println(dto);
 				
+			}
+			else {
+				System.out.println("암호가 다릅니다. 다시 입력하세요");
+			}
+		}
+		else {
+			System.out.println("아이디가 존재하지 않습니다");
+		}
 	}
 	
 }

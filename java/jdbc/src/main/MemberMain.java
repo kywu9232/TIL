@@ -4,6 +4,8 @@ import java.util.Scanner;
 import view.MemberDeleteView;
 import view.MemberInsertView;
 import view.MemberSelectView;
+import view.MemberSelectView2;
+import view.MemberSelectView3;
 import view.MemberUpdateView;
 
 public class MemberMain {
@@ -16,11 +18,12 @@ public class MemberMain {
 			System.out.println("3. 회원 탈퇴");
 			System.out.println("4. 내정보 조회");
 			System.out.println("5. 회원리스트 조회");
-			System.out.println("6. 종료");
+			System.out.println("6. 회원리스트 조회");
+			System.out.println("0. 종료");
 			System.out.print("원하는 메뉴의 번호를 입력하세요 : ");
 			Scanner sc = new Scanner(System.in);
 			int menu = sc.nextInt();
-			if(menu == 6) { System.exit(0);} //break; return;
+			if(menu == 0) { System.exit(0);} //break; return;
 			else if (menu ==1) {
 				MemberInsertView view = new MemberInsertView();
 				view.input();			
@@ -37,7 +40,14 @@ public class MemberMain {
 				MemberSelectView view = new MemberSelectView();
 				view.input();
 			}
-			
+			else if(menu ==5) {
+				MemberSelectView2 view = new MemberSelectView2();
+				view.input();
+			}
+			else if(menu ==6) {
+				MemberSelectView3 view = new MemberSelectView3();
+				view.input();
+			}
 			
 			
 		}
