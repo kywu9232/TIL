@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+var num1 = prompt ("첫번째 숫자");
+var op = prompt ("연산자");
+var num2 = prompt ("두번째 숫자");
+
+
+if (isNaN(num1) || isNan(num2)){
+	document.write("정수로만 입력하세요 <br>")
+}
+else{
+var num1Int = parseInt(num1);
+var num2Int = parseInt(num2);
+
+if(op==="+"){
+	var result = num1 + op + num2 + "=" + (num1Int + num2Int);
+	var result = `${num1} ${op} ${num2} = ${num1Int + num2Int}`
+}
+else if(op==="-"){
+	var result = num1 + op + num2 + "=" + (num1Int - num2Int);
+}
+else if(op==="*"){
+	var result =  num1 + op + num2 + "=" + (num1Int * num2Int);
+}
+else if(op==="/"){
+	var result =  num1 + op + num2 + "=" + (num1Int / num2Int);
+}
+else {
+	var c = confirm("잘못된 연산입니다");
+	op = "+";
+	if(c == true){
+		var result =  num1 + "+" + num2 + "=" + (num1Int + num2Int)
+	}
+	else{
+		var result = "다시 연산내용을 입력하세요";
+	}	
+	}
+}
+document.write( result + "<br>");
+</script>
+</body>
+</html>

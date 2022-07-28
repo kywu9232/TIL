@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+
+//hoisting 가능
+function f1(){
+	document.write("f1호출" + "<br>");
+}
+function f2(){
+	var a=10, b=20;
+	return a+b;
+}
+function f3(a,b){
+	return a+b;
+	
+}
+function f4(a,b){
+	if(!isNaN(a)&&!isNaN(b)){
+	return a*b;
+	}
+	else {return a+b;}
+	
+}
+f1();
+var result2 = f2();
+document.write(result2 + "<br>");
+
+document.write(f3("십","이십")+ "<br>");
+document.write(f4(10,20)+ "<br>");
+document.write(typeof(f4("십","이십"))+ "<br>");
+document.write(typeof(f4(10,20))+ "<br>");
+document.write(typeof(f4)+ "<br>");
+
+//함수도 변수의 일종, 함수- 유명의 함수 (= 함수선언식)/ 익명함수 (1. 이벤트 발생시 자동 2. 타이머 자동 3.정의동시 1번사용자 호출)
+(function(a){
+	document.write("무명의함수입니다.")
+})();
+
+var myfunc = function(){
+	document.write("변수처럼 사용하는 함수입니다.")
+}
+myfunc();
+</script>
+
+
+</body>
+</html>

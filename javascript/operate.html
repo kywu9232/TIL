@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+var b = "<br>";
+
+document.write(parseInt(10 / 3) + b);
+document.write(parseInt("3.33333") + b);
+document.write(parseInt("abc") + b); // nan not a number
+document.write(parseInt("123abc") + b);
+document.write(parseInt(3.14) + 1 + b);
+document.write( typeof parseFloat("3.14") + b);
+
+document.write(true + true + b);
+document.write(1 + undefined + b);
+document.write(1 + null + b);
+
+let str1 = 'java script'; //string
+let str2 = new String("java script"); //object
+document.write(typeof str1 + b); //string
+document.write(typeof str2 + b); //object
+document.write((str2 instanceof String) + b);  //instanceof 연산자 우선
+document.write((str2.constructor == String) + b);
+
+document.write('str1의 문자열 갯수= ' + str1.length + b);
+document.write('str1 에서 scr위치= ' + str1.indexOf('scr') + b);
+document.write('str1 대문자 변경= ' + str1.toUpperCase() + b);
+document.write('str1의 첫문자= ' + str1.charAt(0) + "," + str1[0] + b);
+
+document.write( "str1 == str2 비교결과 : " + (str == str2) + b); // 값 동일
+document.write( "str1 == str2 비교결과 : " + (str === str2) + b);
+
+document.write("100 === \"100\" 비교결과 : " + (100 ==="100") + b);
+document.write("100 == \"100\" 비교결과 : " + (100 == "100") + b);
+
+let result1 = typeof(100);
+document.write((result == 'number' && 100 == "100") + b);
+document.write((null == undefined)+b);
+
+let str3 = "Java Script";
+let contain = ste3.indexOf("scr")>0?"포함":"미포함";
+document.write(contain + b);
+
+let a=1, b2=2, c=2;
+let str4 = "delete연습";
+document.write(str + b);
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+var b = "global";
+function a(){
+	let b = "global에서 local로 변경";
+	let c = "a함수의 local";
+	document.write(b + "<br>")
+	document.write(c + "<br>")
+	
+}
+a();
+document.write(b + "<br>")
+document.write(c + "<br>")
+</script>
+
+</body>
+</html>
